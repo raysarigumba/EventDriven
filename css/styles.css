@@ -6,3 +6,9 @@ p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
 }
+h3 {
+    border-style: dotted;
+}
+h4 {
+    text-align: center;
+}
