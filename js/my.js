@@ -5,12 +5,8 @@ var m = parseInt(prompt("Input Month (1-12): "));
 var d = parseInt(prompt("Input 1st day of month ranging 1-7: "));
 var currentDay = 1; var counter = 0; var bool = true;
 
-if(m > 12 && d > 7 && m <= 0 && d <= 0){
-    var a = document.getElementById("main");
-    var output = document.createTextNode("Invalid Input");
-    a.appendChild(output);
-}
-else{
+if(month < 13 && day < 8 && month > 0 && day > 0){
+    
     var mn = document.getElementById("month_name");
     var text = document.createTextNode(month[m-1]);
     mn.appendChild(text);
@@ -87,4 +83,9 @@ else{
             }
         }
     }
+}
+else{
+    var a = document.getElementById("main");
+    var output = document.createTextNode("Invalid Input");
+    a.appendChild(output);
 }
