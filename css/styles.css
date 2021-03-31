@@ -1,15 +1,32 @@
-h1{
-    color: aquamarine; text-decoration: underline;
+table{
+    width: 300px;
+    height: 100px;
+    border: 2px solid black;
 }
-p {
-    font-size: xx-large;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#title{
+    border-bottom: 2px solid black;
+}
+.body-color{
+    background-color: pink;
+}
+td{
+    border: 1px solid black;
     text-align: center;
 }
-h3 {
-    border-style: dotted;
+h1 {
+    color: cornflowerblue;
 }
-h4 {
+td {
     text-align: center;
-    font-style: italic;
+    border: black solid;
+    padding: 10px;
+}
+thead{
+    font-weight: bold;
+    color: rgb(36, 33, 33);
+    padding: 20px;
+
+}
+.s{
+    border-right: 2px solid black;
 }
