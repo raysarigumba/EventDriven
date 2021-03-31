@@ -13,6 +13,7 @@ else{
     var mn = document.getElementById("month_name");
     var text = document.createTextNode(month[m-1]);
     mn.appendChild(text);
+
     while(bool){
         var row = document.createElement("tr");
         for(var i = 0; i < day.length; i++){
@@ -50,7 +51,7 @@ else{
                     }
                     else if(cDay >= 28 && (m==2)){
                         var data = document.createElement("td");
-                        var dataText = document.createTextNode(cDay);
+                        var dataText = document.createTextNode('28');
                         data.appendChild(dataText);
                         row.appendChild(data);
                         tBody.appendChild(row);
@@ -73,7 +74,7 @@ else{
                 }
                 else{
                     var data = document.createElement("td");
-                    var dataText = document.createTextNode(cDay);
+                    var dataText = document.createTextNode('');
                     data.appendChild(dataText);
                     row.appendChild(data);
                     tBody.appendChild(row);
