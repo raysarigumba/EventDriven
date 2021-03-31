@@ -3,30 +3,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PA-2</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1 id="main"></h1>
-    <table>
-        <thead>
-            <tr id="section">
-                <th id="month_name" colspan="7"></th>
-            </tr>
-            <tr>
-                <th class="s" style="background-color:rgb(228, 33, 65);">Sun</th>
-                <th class="s">Mon</th>
-                <th class="s">Tue</th>
-                <th class="s">Wed</th>
-                <th class="s">Thu</th>
-                <th class="s">Fri</th>
-                <th>Sat</th>
-            </tr>
-        </thead>
-        <tbody id="content">
+    <form action="">
+        <input type="number" id="subtotal" name="subtotal" placeholder="Subtotal">
+        <label for="subtotal">User Input from 100 to 10,000</label></br></br>
 
-        </tbody>
-    </table>
+        <input type="text" id="tax" name="tax" placeholder="Tax" disabled="true">
+        <label for="tax">+12% Tax</label></br></br>
+
+        <input type="text" id="total" name="total" placeholder="Total" disabled="true">
+        <label for="total">Subtotal + Tax</label></br></br>
+
+        <input type="number" id="amountPaid" name="amountPaid" placeholder="Amount Paid" disabled="true">
+        <label for="amountPaid">Minimum is based on Subtotal+Tax</label></br></br>
+
+        <input type="text" id="change" name="change" placeholder="Change" disabled="true">
+        <label for="change">Amount Paid - Total</label></br></br>
+        
+        <button type="submit" id="submit" disabled="true">Pay</button>
+    </form>
+    <script type="text/javascript" src="/js/my.js"></script>
 </body>
-<script type="text/javascript" src="/js/my.js"> </script>
 </html>

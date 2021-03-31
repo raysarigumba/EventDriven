@@ -1,35 +1,28 @@
-table{
-    width: 300px;
-    height: 100px;
-    border: 2px solid black;
-    width: 40%;
+h1{
+    color: orange;
 }
-#month_name{
-    border-bottom: 2px solid black;
-    font-size: xx-large;
+p{
+    font-size: 30px;
 }
-.bcolor{
-    background-color: pink;
+.head2{
+    color: orangered;
 }
 td{
-    border: 1px solid black;
-    text-align: center;
-}
-h1 {
-    color: cornflowerblue;
-    margin-left: auto;
-}
-td {
     text-align: center;
     border: black solid;
     padding: 10px;
 }
 thead{
     font-weight: bold;
-    color: rgb(36, 33, 33);
+    color: pink;
     padding: 20px;
 
 }
-.s{
-    border-right: 2px solid black;
+input{
+    text-align: right;
+}
+#submit{
+    color: white;
+    background-color: rgb(168, 16, 16);
+    width: 60px; height: 25px; border-radius: 4px;
 }
