@@ -40,7 +40,7 @@ vOrders.forEach(function(viewOrder){
                     console.log(items[ii])
                     if(storage[i]['items'][ii]['name'] != ''){
                         var card = document.createElement("div");
-                        card.className = "card"; card.style.width = "15rem"; card.style.height = "20rem"; card.style.backgroundColor = "grey";
+                        card.className = "card"; card.style.width = "15rem"; card.style.height = "16rem"; card.style.backgroundColor = "rgb(255, 204, 221)"; card.style.paddingBottom = "10px"; card.style.paddingTop = "10px"; 
                         var cImage = document.createElement("img");
                         cImage.src = storage[i]['items'][ii]['thumbnail']; cImage.style.height = "120px"; cImage.style.width = "200px"; cImage.style.paddingLeft = "50px"; cImage.style.paddingRight = "35px";
                         var cBody = document.createElement("div");
