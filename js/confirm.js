@@ -31,12 +31,13 @@ nCustomer.addEventListener('show.bs.modal', function(){
 })
 
 const request = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood'
-var respo 
+var response
 fetch (request)
 .then((res) => {
     let conversion = res.json()
-    conversion.then((data) => {      
-        respo = data
+    conversion
+    .then((data) => {      
+        response = data
         for (var i = 0; i < iList.length; i++){
             for (var ii = 0; ii < data['meals'].length; ii++){
                 var opt = document.createElement("option")
@@ -68,9 +69,8 @@ oNumber.addEventListener('change', function(){
     var storage = JSON.parse(localStorage.getItem('customers'))
     if(storage != null){
         for(var i = 0; i < storage.length; i++){
-            if(ORNumber.storage == data[i]['ORNumber']){
-                ORNumber.storage = ''
-                break
+            if(oNumber.value == data[i]['oNumber']){
+                oNumber.value = ''; break;
             }
         }
     }

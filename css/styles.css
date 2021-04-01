@@ -11,7 +11,7 @@
     height: 60px;
     font-size: 30px;
     font-weight: bolder;
-    color: black;
+    color: rgb(48, 39, 39);
     text-decoration: none;
 }
 .buttonn:hover{
@@ -43,6 +43,6 @@
     align-items: center;
 }
 
-input#orderNumber{
+input#oNumber{
     text-align: center;
 }
