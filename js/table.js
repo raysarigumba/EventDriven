@@ -19,7 +19,7 @@ if(storage != null){
                 tData.className = 'text-center'
                 if(ii == object2.length - 1){
                     var btn = document.createElement("BUTTON");
-                    btn.setAttribute('data-bs-target', '#viewItem'); btn.innerHTML = "View"; btn.className = "btn btn-primary mb-2"; 
+                    btn.setAttribute('data-bs-target', '#viewItem'); btn.innerHTML = "View"; btn.className = "btn btn-secondary mb-2"; 
                     btn.id = "viewOrder";              
                     document.body.appendChild(btn);
                     btn.setAttribute('data-bs-toggle', 'modal');
