@@ -45,4 +45,5 @@
 
 input#oNumber{
     text-align: center;
+    font-style: italic;
 }
