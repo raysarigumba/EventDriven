@@ -42,7 +42,7 @@ vOrders.forEach(function(viewOrder){
                         var card = document.createElement("div");
                         card.className = "card"; card.style.width = "15rem"; card.style.height = "20rem"; card.style.backgroundColor = "grey";
                         var cImage = document.createElement("img");
-                        cImage.src = storage[i]['items'][ii]['thumbnail']; cImage.style.height = "160px"; cImage.style.width = "150px";
+                        cImage.src = storage[i]['items'][ii]['thumbnail']; cImage.style.height = "120px"; cImage.style.width = "200px"; cImage.style.paddingLeft = "50px"; cImage.style.paddingRight = "35px";
                         var cBody = document.createElement("div");
                         cBody.className = "card-body";
                         var cTitle = document.createElement("h6");

@@ -345,8 +345,7 @@ p4.addEventListener('change', function(){
             }
             else{
                 var tot = parseFloat(p4.value) * parseInt(q4.value);
-                st4.value = tot.toFixed(2);
-                save.disabled = false ;         
+                st4.value = tot.toFixed(2); save.disabled = false ;         
             }            
         }
     }
@@ -365,8 +364,7 @@ q4.addEventListener('change', function(){
             }
             else{
                 var tot = parseFloat(p4.value) * parseInt(q4.value);
-                st4.value = tot.toFixed(2);
-                save.disabled = false ;         
+                st4.value = tot.toFixed(2); save.disabled = false ;         
             }     
         }
     }
