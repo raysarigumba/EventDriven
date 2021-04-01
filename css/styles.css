@@ -3,7 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-.buttonn{
+.bttnn{
     border: 2px solid transparent;
     border-color: none;
     border-radius: 10px;
@@ -14,7 +14,7 @@
     color: rgb(48, 39, 39);
     text-decoration: none;
 }
-.buttonn:hover{
+.bttnn:hover{
     cursor: pointer;
 }
 
