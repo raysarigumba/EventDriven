@@ -1,67 +1,49 @@
-var newCustomer = document.getElementById('newCustomer')
-var ORNumber = document.getElementById('ORNumber')
-var customerName = document.getElementById('customerName')
-var item1 = document.getElementById('item1')
-var item2 = document.getElementById('item2')
-var item3 = document.getElementById('item3')
-var item4 = document.getElementById('item4')
-var itemList = [item1, item2, item3, item4]
-var price1 = document.getElementById('price1')
-var price2 = document.getElementById('price2')
-var price3 = document.getElementById('price3')
-var price4 = document.getElementById('price4')
-var qty1 = document.getElementById('qty1')
-var qty2 = document.getElementById('qty2')
-var qty3 = document.getElementById('qty3')
-var qty4 = document.getElementById('qty4')
-var subtotal1 = document.getElementById('subtotal1')
-var subtotal2 = document.getElementById('subtotal2')
-var subtotal3 = document.getElementById('subtotal3')
-var subtotal4 = document.getElementById('subtotal4')
+var i1 = document.getElementById('i1')
+var i2 = document.getElementById('i2')
+var i3 = document.getElementById('i3')
+var i4 = document.getElementById('i4')
+var p1 = document.getElementById('p1')
+var p2 = document.getElementById('p2')
+var p3 = document.getElementById('p3')
+var p4 = document.getElementById('p4')
+var q1 = document.getElementById('q1')
+var q2 = document.getElementById('q2')
+var q3 = document.getElementById('q3')
+var q4 = document.getElementById('q4')
+var st1 = document.getElementById('st1')
+var st2 = document.getElementById('st2')
+var st3 = document.getElementById('st3')
+var st4 = document.getElementById('st4')
+var nCustomer = document.getElementById('nCustomer')
+var oNumber = document.getElementById('oNumber')
+var cName = document.getElementById('cName')
 var save = document.getElementById('save')
-var a = [ORNumber,
-    customerName,
-    item1,
-    item2,
-    item3,
-    item4,
-    price1,
-    price2,
-    price3,
-    price4,
-    qty1,
-    qty2,
-    qty3,
-    qty4,
-    subtotal1,
-    subtotal2,
-    subtotal3,
-    subtotal4]
-newCustomer.addEventListener('show.bs.modal', function(){ //TRIGGER UPON MODAL DISPLAY
-    for(var i = 0; i < a.length; i++){
-        a[i].value = ''
+var iList = [i1, i2, i3, i4]
+var x = [oNumber,cName,i1,i2,i3,i4,p1,p2,p3,p4,q1,q2,q3,q4,st1,st2,st3,st4]
+nCustomer.addEventListener('show.bs.modal', function(){
+    for(var i = 0; i < x.length; i++){
+        x[i].value = ''
         if (i >= 2){
-            a[i].disabled = true
+            x[i].disabled = true
         }
     }
     
 })
 
-const request = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian'
-var response 
+const request = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood'
+var respo 
 fetch (request)
 .then((res) => {
-    let converted = res.json()
-    converted
-    .then((data) => {      
-        response = data
-        for (var i = 0; i < itemList.length; i++){
+    let conversion = res.json()
+    conversion.then((data) => {      
+        respo = data
+        for (var i = 0; i < iList.length; i++){
             for (var ii = 0; ii < data['meals'].length; ii++){
-                var option = document.createElement("option")
-                var optionTextNode = document.createTextNode(data['meals'][ii]['strMeal'])
-                option.value = data['meals'][ii]['strMeal']
-                option.appendChild(optionTextNode)
-                itemList[i].appendChild(option)
+                var opt = document.createElement("option")
+                var optNode = document.createTextNode(data['meals'][ii]['strMeal'])
+                opt.value = data['meals'][ii]['strMeal']
+                opt.appendChild(optNode)
+                iList[i].appendChild(opt)
             }
         }
     })
@@ -74,650 +56,319 @@ fetch (request)
 })
 
 
-newCustomer.addEventListener('change', function(){ //TRIGGER EVERY CONTENT CHANGE INSIDE MODAL
-    if(ORNumber.value != '' && customerName.value != ''){
-        item1.disabled = false
+nCustomer.addEventListener('change', function(){
+    if(oNumber.value != '' && cName.value != ''){
+        i1.disabled = false
     }
     else{
-        item1.disabled = true
+        i1.disabled = true
     }
 })
-ORNumber.addEventListener('change', function(){ //ORNUMBER VALIDATOR
-    var data = JSON.parse(localStorage.getItem('customers'))
-    if(data != null){
-        for(var i = 0; i < data.length; i++){
-            if(ORNumber.value == data[i]['ORNumber']){
-                ORNumber.value = ''
+oNumber.addEventListener('change', function(){
+    var storage = JSON.parse(localStorage.getItem('customers'))
+    if(storage != null){
+        for(var i = 0; i < storage.length; i++){
+            if(ORNumber.storage == data[i]['ORNumber']){
+                ORNumber.storage = ''
                 break
             }
         }
     }
 })
-customerName.addEventListener('change', function(){ //CUSTOMERNAME VALIDATOR
-    if(customerName.value.search(' ') != -1 && customerName.value.split(' ').length == 2 && (isNaN(customerName.value.split(' ')[0]) && isNaN(customerName.value.split(' ')[1]))){
-        var checker = true
-        var customerNameArray = customerName.value.split(' ')
-        var firstNameArray = customerNameArray[0].split('')
-        var lastNameArray = customerNameArray[1].split('')       
-        for(var i = 0; i < firstNameArray.length; i++){
-            if(!((firstNameArray[i] >= "a" && firstNameArray[i] <= "z") || (firstNameArray[i] >= "A" && firstNameArray[i] <= "Z"))){
-                customerName.value = ''
-                checker = false
-                break
+cName.addEventListener('change', function(){ //cName VALIDATOR
+    if(cName.value.search(' ') != -1 && cName.value.split(' ').length == 2 && (isNaN(cName.value.split(' ')[0]) && isNaN(cName.value.split(' ')[1]))){
+        var bool = true
+        var cNameArray = cName.value.split(' ')
+        var fNameArray = cNameArray[0].split('')
+        var lNameArray = cNameArray[1].split('')       
+        for(var i = 0; i < fNameArray.length; i++){
+            if(!((fNameArray[i] >= "a" && fNameArray[i] <= "z") || (fNameArray[i] >= "A" && fNameArray[i] <= "Z"))){
+                cName.value = '';
+                bool = false; break;
             }
         }
-        if(checker){
-            for(var i = 0; i < lastNameArray.length; i++){
-                if(!((lastNameArray[i] >= "a" && lastNameArray[i] <= "z") || (lastNameArray[i] >= "A" && lastNameArray[i] <= "Z"))){
-                    customerName.value = ''
-                    checker = false
-                    break
+        if(bool){
+            for(var i = 0; i < lNameArray.length; i++){
+                if(!((lNameArray[i] >= "a" && lNameArray[i] <= "z") || (lNameArray[i] >= "A" && lNameArray[i] <= "Z"))){
+                    cName.value = ''; checker = false; break;
                 }
             }
-            if(checker){
-                item1.disabled = false   
+            if(bool){
+                i1.disabled = false   
             }
             else{
-                item1.disabled = true   
+                i1.disabled = true   
             }               
         }
         else{
-            customerName.value = ''
+            cName.value = ''
         }              
            
     }
     else{
-        item1.disabled = true
-        customerName.value = ''
+        i1.disabled = true
+        cName.value = ''
     }
     
 })
 
-item1.addEventListener('change', function(){ //ITEM1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER ITEMS)
-        price1.value = ''
-        qty1.value = ''
-        subtotal1.value = ''
-        price1.disabled = false
-        qty1.disabled = false
+i1.addEventListener('change', function(){ //ITEM1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER ITEMS)
+        p1.value = ''; q1.value = ''; st1.value = ''; p1.disabled = false; q1.disabled = false;
         
-        item2.value = ''
-        price2.value = ''
-        qty2.value = ''
-        subtotal2.value = ''
-        item2.disabled = true
-        price2.disabled = true
-        qty2.disabled = true
+        i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
 
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true;  q4.disabled = true;
 })
-price1.addEventListener('change', function(){ // PRICE1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER PRICES)
-    if(isNaN(price1.value)){
+p1.addEventListener('change', function(){ // p1 VALIDATOR (REFER VARIABLE NAMING FOR OTHER PRICES)
+    if(isNaN(p1.value)){
 
-        price1.value = ''
-        subtotal1.value = ''
-        save.disabled = true
+        p1.value = ''; st1.value = ''; save.disabled = true;
 
-        item2.value = ''
-        price2.value = ''
-        qty2.value = ''
-        subtotal2.value = ''
-        item2.disabled = true
-        price2.disabled = true
-        qty2.disabled = true
+        i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
 
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(price1.value <= '0'){
-            subtotal1.value = ''
-            qty1.value = ''
-            save.disabled = true
+        if(p1.value <= '0'){
+            st1.value = ''; q1.value = ''; save.disabled = true;
 
-            item2.value = ''
-            price2.value = ''
-            qty2.value = ''
-            subtotal2.value = ''
-            item2.disabled = true
-            price2.disabled = true
-            qty2.disabled = true
+            i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
     
-            item3.value = ''
-            price3.value = ''
-            qty3.value = ''
-            subtotal3.value = ''
-            item3.disabled = true
-            price3.disabled = true
-            qty3.disabled = true
+            i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
     
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true 
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
         }
         else{
-            if(qty1.value <= "0" || qty1.value == ''){
-                subtotal1.value = ''
-                save.disabled = true
+            if(q1.value <= "0" || q1.value == ''){
+                st1.value = '';
+                save.disabled = true;
     
-                item2.value = ''
-                price2.value = ''
-                qty2.value = ''
-                subtotal2.value = ''
-                item2.disabled = true
-                price2.disabled = true
-                qty2.disabled = true
+                i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
         
-                item3.value = ''
-                price3.value = ''
-                qty3.value = ''
-                subtotal3.value = ''
-                item3.disabled = true
-                price3.disabled = true
-                qty3.disabled = true
+                i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; i4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price1.value) * parseInt(qty1.value)
-                subtotal1.value = result.toFixed(2)
-                save.disabled = false
-                item2.disabled = false
-                price2.disabled = false
-                qty2.disabled = false            
+                var tot = parseFloat(p1.value) * parseInt(q1.value);
+                st1.value = tot.toFixed(2);
+                save.disabled = false; i2.disabled = false; p2.disabled = false; q2.disabled = false;         
             }            
         }
     }
 })
-qty1.addEventListener('change', function(){// QTY VALIDATOR (REFER VARIABLE NAMING FOR OTHER QTYS)
-    if(price1.value <= '0'){
-        qty1.value = ''
-        subtotal1.value = ''
-        save.disabled = true
+q1.addEventListener('change', function(){// QTY VALIDATOR (REFER VARIABLE NAMING FOR OTHER QTYS)
+    if(p1.value <= '0'){
+        q1.value = ''; st1.value = ''; save.disabled = true;
 
-        item2.value = ''
-        price2.value = ''
-        qty2.value = ''
-        subtotal2.value = ''
-        item2.disabled = true
-        price2.disabled = true
-        qty2.disabled = true
+        i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
 
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(qty1.value <= '0'){
-            qty1.value = ''
-            subtotal1.value = ''
-            save.disabled = true
+        if(q1.value <= '0'){
+            q1.value = ''; st1.value = ''; save.disabled = true;
     
-            item2.value = ''
-            price2.value = ''
-            qty2.value = ''
-            subtotal2.value = ''
-            item2.disabled = true
-            price2.disabled = true
-            qty2.disabled = true
+            i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
+
+            i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
     
-            item3.value = ''
-            price3.value = ''
-            qty3.value = ''
-            subtotal3.value = ''
-            item3.disabled = true
-            price3.disabled = true
-            qty3.disabled = true
-    
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true         
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;         
         }
         else{
-            if(price1.value <= "0" || price1.value == ''){
-                subtotal1.value = ''
-                save.disabled = true
+            if(p1.value <= "0" || p1.value == ''){
+                st1.value = ''; save.disabled = true;
     
-                item2.value = ''
-                price2.value = ''
-                qty2.value = ''
-                subtotal2.value = ''
-                item2.disabled = true
-                price2.disabled = true
-                qty2.disabled = true
+                i2.value = ''; p2.value = ''; q2.value = ''; st2.value = ''; i2.disabled = true; p2.disabled = true; q2.disabled = true;
         
-                item3.value = ''
-                price3.value = ''
-                qty3.value = ''
-                subtotal3.value = ''
-                item3.disabled = true
-                price3.disabled = true
-                qty3.disabled = true
+                i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price1.value) * parseInt(qty1.value)
-                subtotal1.value = result.toFixed(2)
-                save.disabled = false
-                item2.disabled = false
-                price2.disabled = false
-                qty2.disabled = false            
+                var tot = parseFloat(p1.value) * parseInt(q1.value)
+                st1.value = tot.toFixed(2)
+                save.disabled = false; i2.disabled = false; p2.disabled = false; q2.disabled = false ;           
             }     
         }
     }
     
 })
-item2.addEventListener('change', function(){
-        price2.value = ''
-        qty2.value = ''
-        subtotal2.value = ''
-        price2.disabled = false
-        qty2.disabled = false
-        save.disabled = true
-    
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+i2.addEventListener('change', function(){
+        p2.value = ''; q2.value = ''; st2.value = ''; p2.disabled = false; q2.disabled = false; save.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
+
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
 })
-price2.addEventListener('change', function(){
-    if(isNaN(price2.value)){
-        price2.value = ''
-        subtotal2.value = ''
-        save.disabled = true
+p2.addEventListener('change', function(){
+    if(isNaN(p2.value)){
+        p2.value = ''; st2.value = ''; save.disabled = true;
 
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(price2.value <= '0'){
-            subtotal2.value = ''
-            qty2.value = ''
-            save.disabled = true
+        if(p2.value <= '0'){
+            st2.value = ''; q2.value = ''; save.disabled = true;
     
-            item3.value = ''
-            price3.value = ''
-            qty3.value = ''
-            subtotal3.value = ''
-            item3.disabled = true
-            price3.disabled = true
-            qty3.disabled = true
+            i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
     
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true 
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
         }
         else{
-            if(qty2.value <= "0" || qty2.value == ''){
-                subtotal2.value = ''
-                save.disabled = true
+            if(q2.value <= "0" || q2.value == ''){
+                st2.value = ''; save.disabled = true;
         
-                item3.value = ''
-                price3.value = ''
-                qty3.value = ''
-                subtotal3.value = ''
-                item3.disabled = true
-                price3.disabled = true
-                qty3.disabled = true
+                i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price2.value) * parseInt(qty2.value)
-                subtotal2.value = result.toFixed(2)
-                save.disabled = false
-                item3.disabled = false
-                price3.disabled = false
-                qty3.disabled = false            
+                var tot = parseFloat(p2.value) * parseInt(q2.value)
+                st2.value = tot.toFixed(2)
+                save.disabled = false; i3.disabled = false; p3.disabled = false; q3.disabled = false;        
             }            
         }
     }
 })
-qty2.addEventListener('change', function(){
-    if(price2.value <= '0'){
-        qty2.value = ''
-        subtotal2.value = ''
-        save.disabled = true
+q2.addEventListener('change', function(){
+    if(p2.value <= '0'){
+        q2.value = ''; st2.value = ''; save.disabled = true;
 
-        item3.value = ''
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        item3.disabled = true
-        price3.disabled = true
-        qty3.disabled = true
+        i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(qty2.value <= '0'){
-            qty2.value = ''
-            subtotal2.value = ''
-            save.disabled = true
+        if(q2.value <= '0'){
+            q2.value = ''; st2.value = ''; save.disabled = true;
         
-            item3.value = ''
-            price3.value = ''
-            qty3.value = ''
-            subtotal3.value = ''
-            item3.disabled = true
-            price3.disabled = true
-            qty3.disabled = true
+            i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
     
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true         
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true  ;       
         }
         else{
-            if(price2.value <= "0" || price2.value == ''){
-                subtotal2.value = ''
-                save.disabled = true
+            if(p2.value <= "0" || p2.value == ''){
+                st2.value = ''; save.disabled = true;
         
-                item3.value = ''
-                price3.value = ''
-                qty3.value = ''
-                subtotal3.value = ''
-                item3.disabled = true
-                price3.disabled = true
-                qty3.disabled = true
+                i3.value = ''; p3.value = ''; q3.value = ''; st3.value = ''; i3.disabled = true; p3.disabled = true; q3.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price2.value) * parseInt(qty2.value)
-                subtotal2.value = result.toFixed(2)
-                save.disabled = false
-                item3.disabled = false
-                price3.disabled = false
-                qty3.disabled = false            
+                var tot = parseFloat(p2.value) * parseInt(q2.value)
+                st2.value = tot.toFixed(2)
+                save.disabled = false; i3.disabled = false; p3.disabled = false; q3.disabled = false ;           
             }     
         }
     }
     
 })
-item3.addEventListener('change', function(){
-        price3.value = ''
-        qty3.value = ''
-        subtotal3.value = ''
-        price3.disabled = false
-        qty3.disabled = false
-        save.disabled = true
+i3.addEventListener('change', function(){
+        p3.value = ''; q3.value = ''; st3.value = ''; p3.disabled = false; q3.disabled = false; save.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = '';  st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
 })
-price3.addEventListener('change', function(){
-    if(isNaN(price3.value)){
-        price3.value = ''
-        subtotal3.value = ''
-        save.disabled = true
-
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+p3.addEventListener('change', function(){
+    if(isNaN(p3.value)){
+        p3.value = ''; st3.value = ''; save.disabled = true;
+            
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(price3.value <= '0'){
-            subtotal3.value = ''
-            qty3.value = ''
-            save.disabled = true
+        if(p3.value <= '0'){
+            st3.value = ''; q3.value = ''; save.disabled = true;
     
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true 
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
         }
         else{
-            if(qty3.value <= "0" || qty3.value == ''){
-                subtotal3.value = ''
-                save.disabled = true
+            if(q3.value <= "0" || q3.value == ''){
+                st3.value = ''; save.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price3.value) * parseInt(qty3.value)
-                subtotal3.value = result.toFixed(2)
-                save.disabled = false
-                item4.disabled = false
-                price4.disabled = false
-                qty4.disabled = false            
+                var tot = parseFloat(p3.value) * parseInt(q3.value)
+                st3.value = tot.toFixed(2)
+                save.disabled = false; i4.disabled = false; p4.disabled = false; q4.disabled = false ;           
             }            
         }
     }
 })
-qty3.addEventListener('change', function(){
-    if(price3.value <= '0'){
-        qty3.value = ''
-        subtotal3.value = ''
-        save.disabled = true
+q3.addEventListener('change', function(){
+    if(p3.value <= '0'){
+        q3.value = ''; st3.value = ''; save.disabled = true;
 
-        item4.value = ''
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        item4.disabled = true
-        price4.disabled = true
-        qty4.disabled = true
+        i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true;
     }
     else{
-        if(qty3.value <= '0'){
-            qty3.value = ''
-            subtotal3.value = ''
-            save.disabled = true
+        if(q3.value <= '0'){
+            q3.value = ''; st3.value = ''; save.disabled = true;
     
-            item4.value = ''
-            price4.value = ''
-            qty4.value = ''
-            subtotal4.value = ''
-            item4.disabled = true
-            price4.disabled = true
-            qty4.disabled = true         
+            i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;        
         }
         else{
-            if(price3.value <= "0" || price3.value == ''){
-                subtotal3.value = ''
-                save.disabled = true
+            if(p3.value <= "0" || p3.value == ''){
+                st3.value = ''; save.disabled = true;
         
-                item4.value = ''
-                price4.value = ''
-                qty4.value = ''
-                subtotal4.value = ''
-                item4.disabled = true
-                price4.disabled = true
-                qty4.disabled = true 
+                i4.value = ''; p4.value = ''; q4.value = ''; st4.value = ''; i4.disabled = true; p4.disabled = true; q4.disabled = true ;
             }
             else{
-                var result = parseFloat(price3.value) * parseInt(qty3.value)
-                subtotal3.value = result.toFixed(2)
-                save.disabled = false
-                item4.disabled = false
-                price4.disabled = false
-                qty4.disabled = false            
+                var tot = parseFloat(p3.value) * parseInt(q3.value)
+                st3.value = tot.toFixed(2)
+                save.disabled = false; i4.disabled = false; p4.disabled = false; q4.disabled = false;           
             }     
         }
     }
     
 })
-item4.addEventListener('change', function(){
-        price4.value = ''
-        qty4.value = ''
-        subtotal4.value = ''
-        price4.disabled = false
-        qty4.disabled = false
-        save.disabled = true
+i4.addEventListener('change', function(){
+        p4.value = ''; q4.value = ''; st4.value = ''; p4.disabled = false; q4.disabled = false; save.disabled = true;
 })
-price4.addEventListener('change', function(){
-    if(isNaN(price4.value)){
-        price4.value = ''
-        subtotal4.value = ''
-        save.disabled = true
+p4.addEventListener('change', function(){
+    if(isNaN(p4.value)){
+        p4.value = ''; st4.value = ''; save.disabled = true;
     }
     else{
-        if(price4.value <= '0'){
-            subtotal4.value = ''
-            qty4.value = ''
-            save.disabled = true
+        if(p4.value <= '0'){
+            st4.value = ''; q4.value = ''; save.disabled = true;
         }
         else{
-            if(qty4.value <= "0" || qty4.value == ''){
-                subtotal4.value = ''
-                save.disabled = true
+            if(q4.value <= "0" || q4.value == ''){
+                st4.value = ''; save.disabled = true;
             }
             else{
-                var result = parseFloat(price4.value) * parseInt(qty4.value)
-                subtotal4.value = result.toFixed(2)
-                save.disabled = false          
+                var tot = parseFloat(p4.value) * parseInt(q4.value)
+                st4.value = tot.toFixed(2)
+                save.disabled = false ;         
             }            
         }
     }
 })
-qty4.addEventListener('change', function(){
-    if(price4.value <= '0'){
-        qty4.value = ''
-        subtotal4.value = ''
-        save.disabled = true
+q4.addEventListener('change', function(){
+    if(p4.value <= '0'){
+        q4.value = ''; st4.value = ''; save.disabled = true;
     }
     else{
-        if(qty4.value <= '0'){
-            qty4.value = ''
-            subtotal4.value = ''
-            save.disabled = true      
+        if(q4.value <= '0'){
+            q4.value = ''; st4.value = ''; save.disabled = true;    
         }
         else{
-            if(price4.value <= "0" || price4.value == ''){
-                subtotal4.value = ''
-                save.disabled = true
+            if(p4.value <= "0" || p4.value == ''){
+                st4.value = ''; save.disabled = true;
             }
             else{
-                var result = parseFloat(price4.value) * parseInt(qty4.value)
-                subtotal4.value = result.toFixed(2)
-                save.disabled = false          
+                var tot = parseFloat(p4.value) * parseInt(q4.value)
+                st4.value = tot.toFixed(2)
+                save.disabled = false ;         
             }     
         }
     }
