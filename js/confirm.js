@@ -29,7 +29,6 @@ nCustomer.addEventListener('show.bs.modal', function(){
     }
     
 })
-
 const request = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood'
 var response
 fetch (request)
@@ -55,7 +54,6 @@ fetch (request)
 .catch((err) =>{
     console.log(err)
 })
-
 
 nCustomer.addEventListener('change', function(){
     if(oNumber.value != '' && cName.value != ''){
@@ -94,20 +92,20 @@ cName.addEventListener('change', function(){ //cName VALIDATOR
                 }
             }
             if(bool){
-                i1.disabled = false   
+                i1.disabled = false   ;
             }
             else{
-                i1.disabled = true   
+                i1.disabled = true ;  
             }               
         }
         else{
-            cName.value = ''
+            cName.value = '';
         }              
-           
+
     }
     else{
-        i1.disabled = true
-        cName.value = ''
+        i1.disabled = true;
+        cName.value = '';
     }
     
 })
@@ -346,8 +344,8 @@ p4.addEventListener('change', function(){
                 st4.value = ''; save.disabled = true;
             }
             else{
-                var tot = parseFloat(p4.value) * parseInt(q4.value)
-                st4.value = tot.toFixed(2)
+                var tot = parseFloat(p4.value) * parseInt(q4.value);
+                st4.value = tot.toFixed(2);
                 save.disabled = false ;         
             }            
         }
@@ -366,8 +364,8 @@ q4.addEventListener('change', function(){
                 st4.value = ''; save.disabled = true;
             }
             else{
-                var tot = parseFloat(p4.value) * parseInt(q4.value)
-                st4.value = tot.toFixed(2)
+                var tot = parseFloat(p4.value) * parseInt(q4.value);
+                st4.value = tot.toFixed(2);
                 save.disabled = false ;         
             }     
         }

@@ -21,11 +21,8 @@ var cNameView = document.getElementById('cNameView');
 var exit = document.getElementById('exit');
 var storage = JSON.parse(localStorage.getItem("customers"));
 var viewItemBody = document.getElementById('viewItemBody');
-var items = [i1View, i2View, i3View, i4View];
-var prices = [p1View, p2View, p3View, p4View];
-var qtys = [q1View, q2View, q3View, q4View];
-var subtotals = [st1View, st2View, st3View, st4View];
-var orderNumber;
+var items = [i1View, i2View, i3View, i4View];var prices = [p1View, p2View, p3View, p4View];var qtys = [q1View, q2View, q3View, q4View];
+var subtotals = [st1View, st2View, st3View, st4View];var orderNumber;
 
 
 vItem.addEventListener("hidden.bs.modal",function(){
@@ -33,8 +30,8 @@ vItem.addEventListener("hidden.bs.modal",function(){
 })
 vOrders.forEach(function(viewOrder){
     viewOrder.addEventListener('click', function(e){
-        console.log(e.target)
-        orderNumber = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText //CATCH ORDER NUMBER THAT IS CLICKED
+        console.log(e.target);
+        orderNumber = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
         for(var i = 0; i < storage.length; i++){
             if(storage[i]['ORNumber'] == orderNumber){    
                 onumberView.value = storage[i]['ORNumber']
@@ -60,7 +57,6 @@ vOrders.forEach(function(viewOrder){
                         cQty.className = "card-text";
                         var qNode = document.createTextNode("Quantity: "+storage[i]["items"][ii]["qty"]);
                         cQty.appendChild(qNode);
-
                         cBody.appendChild(cTitle); cBody.appendChild(cPrice); cBody.appendChild(cQty);
                         card.appendChild(cImage); card.appendChild(cBody); viewItemBody.appendChild(card);
                     }
